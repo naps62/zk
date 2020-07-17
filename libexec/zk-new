@@ -2,16 +2,15 @@
 # Usage: zk new <title>
 # Summary: create a new entry
 
-title="$1"
-echo $title
+title=$(echo "$@" | sed 's/ /-/g')
 
 if [[ $title == "" ]]; then
   echo "Name is missing" >&2
   exit 1
 fi
 
-timestamp=$(date +"%Y%m%d%H%M")
+timestamp=$(date +"%Y-%m-%d-%H-%M")
 
-file="$ZK_PATH/$timestamp $title.md"
+file="$ZK_PATH/$timestamp-$title.md"
 
 $EDITOR -c ":set autochdir" "$file"
