@@ -1,0 +1,29 @@
+#!/bin/sh
+
+command="$1"
+
+SCRIPT_PATH="$BASH_SOURCE"
+while [ -L "$SCRIPT_PATH" ]; do
+  SCRIPT_PATH="$(readlink -f "$SCRIPT_PATH")"
+done
+
+BIN_PATH="$( cd "$( dirname "$SCRIPT_PATH" )" >/dev/null 2>&1 && pwd )"
+LIBEXEC_PATH="${BIN_PATH%bin}libexec"
+export PATH="${LIBEXEC_PATH}:$PATH"
+
+case "$command" in
+  "" | "-h" | "--help" )
+    exec zk-help
+    ;;
+
+  * )
+    command_path=$(command -v "zk-${command}" || true)
+    if [ ! -x "$command_path" ]; then
+      echo "zk: no such command \`${command}\`" >&2
+      exit 1
+    fi
+
+    shift
+    exec "$command_path" "$@"
+    ;;
+esac

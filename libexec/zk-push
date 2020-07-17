@@ -1,0 +1,9 @@
+#!/bin/sh -e
+# Usage: zk push
+# Summary: pushes new zettles to GitHub
+
+cd $ZK_PATH
+
+git add *.md
+git commit -m "[zk-push]"
+git push

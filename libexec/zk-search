@@ -1,0 +1,7 @@
+#!/bin/sh -e
+# Usage: zk search
+# Summary: opesn yous zk's full text search
+
+cd $ZK_PATH
+
+$EDITOR -c ":set autochdir | :FzfRg"

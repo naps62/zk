@@ -1,0 +1,14 @@
+#!/bin/sh -e
+# Usage: zk tags-raw
+# Summary: script-friendly list of tags, with counts
+
+rg \
+  --only-matching "#[\w\-_]{3,}" \
+  --type md \
+  --no-line-number \
+  --no-filename \
+  "$ZK_PATH" | \
+  rg \
+    --invert-match "^#(notes-|import-)" | \
+  awk '{ tot[$0]++ } END { for (i in tot) print tot[i]" "i }' | \
+  sort --reverse --numeric-sort

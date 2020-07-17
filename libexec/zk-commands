@@ -1,0 +1,14 @@
+#!/bin/sh -e
+# Usage: zk commands
+# Summary: list all of zk's subcommands
+
+shopt -s nullglob
+
+paths=$(echo $PATH | sed 's/:/\n/g')
+
+{ for path in $paths; do
+  for file in "${path}/zk-"*; do
+    command=${file##*zk-}
+    echo $command
+  done
+done } | sort | uniq

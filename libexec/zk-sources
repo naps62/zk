@@ -1,0 +1,13 @@
+#!/bin/sh -e
+# Usage: zk sources
+# Summary: human-friendly list of sources
+
+function tag_preview_cmd {
+  cut="cut -d' ' -f 2"
+  xargs="xargs rg --heading --context=100"
+  bat="bat --color always --language md --style plain"
+
+  echo "echo {} | $cut | $xargs | $bat"
+}
+
+zk sources-raw | fzf --preview "$(tag_preview_cmd)"

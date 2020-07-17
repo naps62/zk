@@ -1,0 +1,55 @@
+#!/bin/sh -e
+# Usage: zk help [<command>]
+# Summary: provide help on ZK's CLI commands
+
+command_path() {
+  command -v "zk-$command" || true
+}
+
+summary() {
+  sed -n "s/^# Summary: \(.*\)/\1/p" "$1"
+}
+
+usage() {
+  sed -n "s/^# \(Usage: .*\)/\1/p" "$1"
+}
+
+print_help() {
+  local file="$1"
+  local usage="$(usage "$file")"
+  local summary="$(summary "$file")"
+
+  if [ -n "$usage" ]; then
+    echo -e "ZK-CLI: $command\n$summary\n"
+    echo "$usage"
+  else
+    echo "Sorry, this command isn't documented yet."
+  fi
+}
+
+command="$1"
+
+case "$command" in
+  "")
+  cat <<EOF
+Usage: zk <command> args
+
+See \`zk help <command>\` for information on a specific command
+
+Available commands:
+$(zk-commands)
+EOF
+  ;;
+
+  *)
+    file="$(command_path "$command")"
+
+    if [ -n "$file" ]; then
+      print_help "$file"
+    else
+      echo "zk: no such command \`$command\`" >&2
+      exit 1
+    fi
+  ;;
+esac
+

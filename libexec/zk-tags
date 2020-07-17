@@ -1,0 +1,13 @@
+#!/bin/sh -e
+# Usage: zk tags
+# Summary: human-friendly list of tags
+
+function tag_preview_cmd {
+  cut="cut -d' ' -f 2"
+  xargs="xargs rg --heading --context=100"
+  bat="bat --color always --language md --style plain"
+
+  echo "echo {} | $cut | $xargs | $bat"
+}
+
+zk tags-raw | fzf --preview "$(tag_preview_cmd)"

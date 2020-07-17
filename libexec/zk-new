@@ -1,0 +1,19 @@
+#!/bin/sh -e
+# Usage: zk new <title>
+# Summary: create a new entry
+
+$EDITOR -c ":set autochdir | :Rg"
+title="$1"
+echo $title
+
+if [[ $title == "" ]]; then
+  echo "Name is missing" >&2
+  exit 1
+fi
+
+timestamp=$(date +"%Y%m%d%H%M")
+
+file="$ZK_PATH/$timestamp $title.md"
+echo $file
+
+$EDITOR -c ":set autochdir" "$file"
