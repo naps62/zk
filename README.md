@@ -2,7 +2,9 @@
 
 A simple Zettlekasten setup using Vim + FZF + Ripgrep
 
-## What is zettlekasten?
+![Zettlekasten](./banner.jpeg)
+
+## What is a zettlekasten?
 
 > The zettelkasten (German: "slip box") is a knowledge management and note-taking method used in research and study. 
 
