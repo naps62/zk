@@ -2,6 +2,8 @@
 # Usage: zk tags-raw
 # Summary: script-friendly list of tags, with counts
 
+cd $ZK_PATH
+
 rg \
   --only-matching "#[\w\-_]{3,}" \
   --type md \

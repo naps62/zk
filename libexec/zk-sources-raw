@@ -2,6 +2,8 @@
 # Usage: zk sources-raw
 # Summary: script-friendly list of sources, with counts
 
+cd $ZK_PATH
+
 rg \
   --only-matching "@[\w\-_]{3,}" \
   --type md \

@@ -2,6 +2,8 @@
 # Usage: zk tags
 # Summary: human-friendly list of tags
 
+cd $ZK_PATH
+
 function tag_preview_cmd {
   cut="cut -d' ' -f 2"
   xargs="xargs rg --heading --context=100"
