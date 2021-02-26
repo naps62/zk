@@ -48,32 +48,36 @@ All of this is powered by:
 - [Vim](https://www.vim.org) ([Neovim](https://neovim.io) works too)
 - [Fzf](https://github.com/junegunn/fzf)
 - [Ripgrep](https://github.com/BurntSushi/ripgrep)
+)
 
 More tooling may be added down the line, but for now this simple setup serves me well.
 
 ### Installation
 
-1. Clone the repo to some place:
+1. Make sure you have the `fzf`, `rg` commands working on your shell, as well as
+   the [fzf.vim](https://github.com/junegunn/fzf.vim) Vim plugin.
+
+2. Clone the repo to some place:
 
 ```sh
-git clone git@github.com:naps62/zettelkasten $HOME/.zettelkasten
+git clone git@github.com:naps62/zk $HOME/.zk
 ```
 
-2. Add the `bin` directory to your path
+3. Add the `bin` directory to your path
 
 ```sh
 # add this to your .bashrc / .zshrc / .whateverrc
-export PATH="$HOME/.zettelkasten/bin:$PATH"
+export PATH="$HOME/.zk/bin:$PATH"
 ```
 
-3. Setup the needed `$ZK_PATH` variable, pointing to where you want your knowledge base to be:
+4. Setup the needed `$ZK_PATH` variable, pointing to where you want your knowledge base to be:
 
 ```sh
 # add this to your .bashrc / .zshrc / .whateverrc
 export ZK_PATH="$HOME/zettelkasten"
 ```
 
-4. Start using it
+5. Start using it
 
 ```sh
 # create a new zettel
